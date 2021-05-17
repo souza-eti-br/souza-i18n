@@ -1,7 +1,7 @@
 package br.eti.souza.i18n;
 
 /**
- * Mensagem internacionalizada de uma exceção.
+ * Mensagem internacionalizada.
  * @author Alan Moraes Souza
  */
 public final class Message {
