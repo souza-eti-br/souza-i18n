@@ -1,5 +1,6 @@
 package br.eti.souza.i18n;
 
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -81,12 +82,8 @@ public class Messages {
      * @param args Argumentos da mensagem.
      * @return Mensagem.
      */
-    public static String get(String key, String... args) {
-        var message = Messages.get(key);
-        for (var i = 0; i < args.length; i++) {
-            message = message.replaceAll("\\{" + i + "\\}", args[i]);
-        }
-        return message;
+    public static String get(String key, Object... args) {
+        return MessageFormat.format(Messages.get(key), args);
     }
 
     /**

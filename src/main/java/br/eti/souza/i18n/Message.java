@@ -12,7 +12,7 @@ public class Message {
     /** Chave da mensagem. */
     private final String key;
     /** Argumentos da mensagem. */
-    private final List<String> args = new ArrayList<>();
+    private final List<Object> args = new ArrayList<>();
 
     /**
      * Construtor que define a chave da mensagem sem argumentos.
@@ -27,7 +27,7 @@ public class Message {
      * @param key Chave da mensagem. (se null, usa "null").
      * @param args Argumentos da mensagem. (se algum argumento for null, usa "null").
      */
-    public Message(String key, String... args) {
+    public Message(String key, Object... args) {
         this(key);
         for (var arg : args) {
             this.args.add(arg == null ? "null" : arg);
@@ -46,7 +46,7 @@ public class Message {
      * Retorna os argumentos da mensagem.
      * @return Argumentos da mensagem.
      */
-    public String[] getArgs() {
-        return this.args.toArray(String[]::new);
+    public Object[] getArgs() {
+        return this.args.toArray(Object[]::new);
     }
 }
