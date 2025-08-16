@@ -57,11 +57,11 @@ public class MessagesTest {
     /** Teste obter pela chave com argumentos. */
     @Test
     public void getByKeyWithArgs() {
-        Assertions.assertEquals("arg0 Chave arg1", Messages.get("key.args", "arg0", "arg1"));
+        Assertions.assertEquals("arg0 Chave 1", Messages.get("key.args", "arg0", 1));
         Messages.setLocale(Locale.ENGLISH);
-        Assertions.assertEquals("arg0 Key arg1", Messages.get("key.args", "arg0", "arg1"));
+        Assertions.assertEquals("arg0 Key 0", Messages.get("key.args", "arg0", 0.0));
         Messages.setLocale(Locale.of("es"));
-        Assertions.assertEquals("arg0 Clave arg1", Messages.get("key.args", "arg0", "arg1"));
+        Assertions.assertEquals("arg0 Clave c", Messages.get("key.args", "arg0", 'c'));
         Messages.setLocale(Locale.of("es", "MX"));
         Assertions.assertEquals("arg0 ClaveMexico arg1", Messages.get("key.args", "arg0", "arg1"));
         Messages.setLocale(Locale.of("pt", "BR"));
@@ -100,13 +100,13 @@ public class MessagesTest {
         Assertions.assertEquals("### key.invalid ###", Messages.get(new Message("key.invalid")));
         Assertions.assertEquals("Chave", Messages.get(new Message("key")));
         Assertions.assertEquals("### key.invalid ###", Messages.get(new Message("key.invalid", "arg0", "arg1")));
-        Assertions.assertEquals("arg0 Chave arg1", Messages.get(new Message("key.args", "arg0", "arg1")));
-        Assertions.assertEquals("arg0 Chave arg0", Messages.get(new Message("key.same.args", "arg0", "arg1")));
+        Assertions.assertEquals("arg0 Chave 0", Messages.get(new Message("key.args", "arg0", 0)));
+        Assertions.assertEquals("1 Chave 1", Messages.get(new Message("key.same.args", 1.0, "arg0")));
         Messages.setLocale(Locale.ENGLISH);
         Assertions.assertEquals("### key.invalid ###", Messages.get(new Message("key.invalid", "arg0")));
         Assertions.assertEquals("Key", Messages.get(new Message("key")));
         Assertions.assertEquals("### key.invalid ###", Messages.get(new Message("key.invalid", "arg0", "arg1")));
-        Assertions.assertEquals("arg0 Key arg1", Messages.get(new Message("key.args", "arg0", "arg1")));
+        Assertions.assertEquals("false Key arg1", Messages.get(new Message("key.args", false, "arg1")));
         Assertions.assertEquals("arg0 Key arg0", Messages.get(new Message("key.same.args", "arg0", "arg1")));
         Messages.setLocale(Locale.of("es"));
         Assertions.assertEquals("### key.invalid ###", Messages.get(new Message("key.invalid")));
