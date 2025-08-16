@@ -5,6 +5,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Obter mensagens internacionalizada.
@@ -12,6 +14,8 @@ import java.util.ResourceBundle;
  */
 public class Messages {
 
+    /** Logger para esta classe. */
+    private final static Logger LOGGER = Logger.getLogger(Messages.class.getName());
     /** Cache das fontes de mensagens. */
     private final static ThreadLocal<Locale> LOCALE = new ThreadLocal<>();
     /** Cache das fontes de mensagens. */
@@ -48,6 +52,7 @@ public class Messages {
             try {
                 Messages.CACHE.put(locale, ResourceBundle.getBundle("messages", locale));
             } catch (MissingResourceException e) {
+                Messages.LOGGER.log(Level.WARNING, e.getMessage());
                 return null;
             }
         }
@@ -65,6 +70,7 @@ public class Messages {
         } catch (NullPointerException e) {
             return "### " + Messages.getLocale().toLanguageTag() + " ###";
         } catch (MissingResourceException e) {
+            Messages.LOGGER.log(Level.WARNING, e.getMessage());
             return "### " + key + " ###";
         }
     }
